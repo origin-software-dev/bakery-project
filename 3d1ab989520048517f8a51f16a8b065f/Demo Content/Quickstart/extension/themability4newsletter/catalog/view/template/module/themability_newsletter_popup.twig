@@ -1,0 +1,63 @@
+<div class="modal fade themability-newsletter-popup" id="themability-newsletter-popup">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="themability-newsletter-wrap row">
+                    <div class="col-md-6">
+                        <div class="themability-newsletter-image" style="background: var(--secondary-color) url({{ newsletter_image }}) no-repeat center center; background-size: cover;"></div>
+                    </div>
+                    <div class="themability-newsletter-content col-md-6">
+                        <div class="themability-newsletter-content-innner">
+                            <h3>{{newsletter_title_popup }}</h3>
+                            <p>{{newsletter_description_popup }}</p>
+                            <form action="{{ user_subscribe_popup }}" method="post" id="form_hemability_newsletter_popup" data-oc-toggle="ajax">
+                                <input type="email" class="form-control themability_newsletter_usr_popup_email" name="themability_newsletter_usr_popup_email" id="themability_newsletter_usr_popup_email" placeholder="{{ entry_user_email }}">
+                                <button type="submit" title="{{ entry_subscribe }}" class="btn btn-default subscribe-btn">{{ entry_subscribe }}</button>
+                            </form>
+                            <div class="news-checkbox-close">
+                                <div class="themability-newsletter-content-bottom">
+                                    <input type="checkbox" id="popup_dont_show_again">
+                                    <label for="popup_dont_show_again">{{ entry_show_again }}</label>
+                                </div>
+                                <button type="button" class="themability-newsletter-btn-close btn-close" data-bs-dismiss="modal" aria-label="Close"><i class="icon-close"></i></button>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script><!--
+    // check for validation
+    $(document).ready(function() {
+    	$('#themability_newsletter_usr_popup_email').keypress(function(e) {
+    		if(e.which == 13) {
+    			e.preventDefault();
+    			subscribe_popup();
+    		}
+    	});
+    	//transition effect
+        if($.cookie("showpopup") != 1){
+    		$('#themability-newsletter-popup').modal('show');
+        }
+    	$('#popup_dont_show_again').on('change', function(){			
+    		if($.cookie("showpopup") != 1){   
+    			$.cookie("showpopup",'1')
+    		}else{
+    			$.cookie("showpopup",'0')
+    		}
+    	}); 
+    });	
+    //-->
+</script>
+<script type="text/javascript"><!--
+$( document ).ready(function() {
+	$( document ).ajaxComplete(function(event, xhr, options) {
+		event.preventDefault();
+		if( typeof xhr['responseJSON'] != "undefined" && typeof xhr['responseJSON']['form_reset'] != "undefined" && xhr['responseJSON']['form_reset'] == "yes" ){
+			$("#form_hemability_newsletter_popup")[0].reset();
+		}
+	});
+});
+//--></script>

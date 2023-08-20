@@ -1,0 +1,146 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="float-end">
+        <button type="submit" form="form-module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa-solid fa-save"></i></button>
+        <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fa-solid fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ol class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+          <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="card">
+      <div class="card-header"><i class="fa-solid fa-pencil"></i> {{ text_edit }}</div>
+      <div class="card-body">
+        <form id="form-module" action="{{ save }}" method="post" data-oc-toggle="ajax">
+          <div class="row mb-3 required">
+            <label for="input-name" class="col-sm-2 col-form-label">{{ entry_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control"/>
+              <div id="error-name" class="invalid-feedback"></div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-banner" class="col-sm-2 col-form-label">{{ entry_banner }}</label>
+            <div class="col-sm-10">
+              <select name="banner_id" id="input-banner" class="form-select">
+                {% for banner in banners %}
+                  <option value="{{ banner.banner_id }}"{% if banner.banner_id == banner_id %} selected="selected"{% endif %}>{{ banner.name }}</option>
+                {% endfor %}
+              </select>     
+              <div class="banner-msg">{{ entry_banner_edit }}</div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-effect" class="col-sm-2 col-form-label">{{ entry_effect }}</label>
+            <div class="col-sm-10">
+              <select name="effect" id="input-effect" class="form-select">
+                <option value="slide"{% if effect == 'slide' %} selected="selected"{% endif %}>{{ text_slide }}</option>
+                <option value="fade"{% if effect == 'fade' %} selected="selected"{% endif %}>{{ text_fade }}</option>
+              </select>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-items" class="col-sm-2 col-form-label">{{ entry_items }}</label>
+            <div class="col-sm-3">
+              <input type="text" name="items" value="{{ items }}" placeholder="{{ entry_items }}" id="input-items" class="form-control"/>
+            </div>
+            <div class="form-text text-muted col-sm-7">{{ help_items }}</div>
+          </div>            
+          <div class="row mb-3">
+            <label for="input-laptop_items" class="col-sm-2 col-form-label">{{ entry_laptop_items }}</label>
+            <div class="col-sm-3">
+              <input type="text" name="laptop_items" value="{{ laptop_items }}" placeholder="{{ entry_laptop_items }}" id="input-laptop_items" class="form-control"/>
+            </div>
+              <div class="form-text text-muted col-sm-7">{{ help_laptop_items }}</div>
+          </div>            
+          <div class="row mb-3">
+            <label for="input-tablet_items" class="col-sm-2 col-form-label">{{ entry_tablet_items }}</label>
+            <div class="col-sm-3">
+              <input type="text" name="tablet_items" value="{{ tablet_items }}" placeholder="{{ entry_tablet_items }}" id="input-tablet_items" class="form-control"/>
+            </div>
+            <div class="form-text text-muted col-sm-7">{{ help_tablet_items }}</div>
+          </div>            
+          <div class="row mb-3">
+            <label for="input-mobile_items" class="col-sm-2 col-form-label">{{ entry_mobile_items }}</label>
+            <div class="col-sm-3">
+              <input type="text" name="mobile_items" value="{{ mobile_items }}" placeholder="{{ entry_mobile_items }}" id="input-mobile_items" class="form-control"/>
+            </div>
+            <div class="form-text text-muted col-sm-7">{{ help_mobile_items }}</div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-loop" class="col-sm-2 col-form-label">{{ entry_loop }}</label>
+            <div class="col-sm-10">
+              <div class="form-check form-switch form-switch-lg">
+                <input type="hidden" name="loop" value="0"/>
+                <input type="checkbox" name="loop" value="1" id="input-loop" class="form-check-input"{% if loop %} checked{% endif %}/>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-autoplay" class="col-sm-2 col-form-label">{{ entry_autoplay }}</label>
+            <div class="col-sm-10">
+              <div class="form-check form-switch form-switch-lg">
+                <input type="hidden" name="autoplay" value="0"/>
+                <input type="checkbox" name="autoplay" value="1" id="input-autoplay" class="form-check-input"{% if autoplay %} checked{% endif %}/>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-navigation" class="col-sm-2 col-form-label">{{ entry_navigation }}</label>
+            <div class="col-sm-10">
+              <div class="form-check form-switch form-switch-lg">
+                <input type="hidden" name="navigation" value="0"/>
+                <input type="checkbox" name="navigation" value="1" id="input-navigation" class="form-check-input"{% if navigation %} checked{% endif %}/>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-pagination" class="col-sm-2 col-form-label">{{ entry_pagination }}</label>
+            <div class="col-sm-10">
+              <div class="form-check form-switch form-switch-lg">
+                <input type="hidden" name="pagination" value="0"/>
+                <input type="checkbox" name="pagination" value="1" id="input-pagination" class="form-check-input"{% if pagination %} checked{% endif %}/>
+              </div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-interval" class="col-sm-2 col-form-label">{{ entry_interval }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="interval" value="{{ interval }}" placeholder="{{ entry_interval }}" id="input-interval" class="form-control"/>
+            </div>
+          </div>
+          <div class="row mb-3 required">
+            <label for="input-width" class="col-sm-2 col-form-label">{{ entry_width }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control"/>
+              <div id="error-width" class="invalid-feedback"></div>
+            </div>
+          </div>
+          <div class="row mb-3 required">
+            <label for="input-height" class="col-sm-2 col-form-label">{{ entry_height }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control"/>
+              <div id="error-height" class="invalid-feedback"></div>
+            </div>
+          </div>
+          <div class="row mb-3">
+            <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <div class="form-check form-switch form-switch-lg">
+                <input type="hidden" name="status" value="0"/>
+                <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}

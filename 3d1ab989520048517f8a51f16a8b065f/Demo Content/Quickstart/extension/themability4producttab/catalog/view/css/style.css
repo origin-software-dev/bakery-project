@@ -1,0 +1,51 @@
+/*----------------------------------------------*/
+/* Start Product Tab */
+/*----------------------------------------------*/
+.themability-tabs ul {
+    border: none;
+    margin-bottom: 30px;
+    padding: 0;
+    justify-content: center;
+}
+
+.themability-tabs ul li {
+    float: unset;
+    display: inline-block;
+    outline: none;
+    margin: 0;
+}
+
+.themability-tabs ul li a {
+    padding: 13px 35px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 50px;
+    margin: 0 10px;
+    display: inline-block;
+    border: 2px solid var(--primary-color);
+    background: transparent;
+}
+
+.themability-tabs ul li a:hover,
+.themability-tabs ul li a:focus,
+.themability-tabs ul li a.selected {
+    background: var(--primary-hover-color);
+    color: var(--secondary-color);
+    border-color: var(--primary-hover-color);
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+@media (max-width: 991px) {
+    .themability-tabs ul {
+        margin-bottom: 15px;
+    }
+    .themability-tabs ul li a {
+        padding: 5px 15px;
+        font-size: 14px;
+        margin: 0 5px;
+    }
+}
+@media (max-width: 480px) {
+    .themability-tabs ul li a {
+        margin: 0 2px;
+    }
+}

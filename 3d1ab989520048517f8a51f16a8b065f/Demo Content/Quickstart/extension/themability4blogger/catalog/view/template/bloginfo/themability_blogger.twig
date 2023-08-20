@@ -1,0 +1,135 @@
+{{ header }} 
+<div class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="row">
+        {{ column_left }} 
+        {% if column_left and column_right %}
+        {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+        {% set class = 'col' %}
+        {% else %}
+        {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}  single-blog">
+            {{ content_top }} 
+            <h1>{{ heading_title }}</h1>
+            <div class="article-blog">
+                {% if blogs.banner_image %}
+                {% set blogimage = blogs.banner_image %} 
+                {% elseif blogs.image %}
+                {% set blogimage = blogs.image %} 
+                {% else %}
+                {# {% set blogimage = 'image/no_image.png' %}  #}
+                {% set blogimage = '' %} 
+                {% endif %}
+                {% if blogimage != '' %}
+                <div class="blog-image">
+                    <img src="{{ blogimage }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-responsive mw-100" />
+                </div>
+                {% endif %}
+                <div class="blog-description">
+                    <div class="date-time-single">
+                        <i class="fa-regular fa-calendar-days"></i>
+                        <span>{{ date }}</span>
+                    </div>
+                    <div  class="blog_title">{{ heading_title }}</div>
+                    <div class="blog-desc">{{ description }}</div>
+                </div>
+            </div>
+            <div class="comment-list">
+                {% if blog_comments %}
+                <div class="block-title">
+                    <legend>{{ text_your_comments }}</legend>
+                </div>
+                {% for blog_comment in blog_comments %} 
+                <div class="view-comment">
+                    <div class="view-comment-inner">
+                        <div class="user_icon">
+                            <i class="fa fa-user"></i>									
+                        </div>
+                        <div class="comment_info">
+                            <div class="name">{{ blog_comment.author }}</div>
+                            <div class="date">{{ blog_comment.date_added }}</div>
+                            <div class="comment-text">{{ blog_comment.comment }}</div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %} 
+                {% endif %}
+            </div>
+            <div class="comment-form">
+                {% if allow_comments %} 
+                <div class="block-title">
+                    <legend>{{ text_leave_comment }}</legend>
+                </div>
+                <div class="" id="add-comment">
+                    {% if login_required and not is_logged %} 
+                    <h4 class="no-login text-center">{{ text_login_required }}</h4>
+                    {% else %}
+                    <form action="{{ action }}" method="post" id="add_themability_comment" data-oc-toggle="ajax">
+                        <div class="form-group required row mb-3">
+                            <label class="col-sm-3 control-label col-form-label" for="input-author">{{ entry_author }}</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="author" value="{{ author }}" id="input-author" placeholder="{{ entry_author }}" class="form-control" />
+                                <div id="error-author" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="form-group required row mb-3">
+                            <label class="col-sm-3 control-label col-form-label" for="input-email">{{ entry_email }}</label>
+                            <div class="col-sm-9">
+                                <input type="email" name="email" value="{{ email }}" id="input-email" placeholder="{{ entry_email }}" class="form-control"  />
+                                <div id="error-email" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="form-group required row mb-3">
+                            <label class="col-sm-3 control-label col-form-label" for="input-comment">{{ entry_comment }}</label>
+                            <div class="col-sm-9">
+                                <textarea name="comment" rows="10" id="input-comment" placeholder="{{ entry_comment }}" class="form-control"  >{{ comment }}</textarea>
+                                <div id="error-comment" class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="form-group row form-group-captcha">
+                            {{ captcha }}
+                        </div>
+                        <input type="hidden" name="auto_approve" value="{{ auto_approve }}" />
+                        <div class="buttons text-end">
+                            <button type="submit" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary">{{ button_comment_add }}</button>
+                        </div>
+                    </form>
+                    {% endif %} 
+                </div>
+                {% endif %}
+            </div>
+            {{ content_bottom }}
+        </div>
+        {{ column_right }}
+    </div>
+</div>
+{# Scroll for view error #}
+<script>
+    jQuery(document).ready(function(){
+    	var error_class = 'text-danger';
+    	if(jQuery("div").hasClass(error_class)){
+    		jQuery('html, body').animate({
+    			scrollTop: (jQuery('.'+error_class).first().offset().top - 100)
+    		},300);
+    	}
+    });
+</script>
+{# .Scroll for view error #}
+<script type="text/javascript"><!--
+    $( document ).ready(function() {
+    	$( document ).ajaxComplete(function(event, xhr, options) {
+    		event.preventDefault();
+    		if( typeof xhr['responseJSON'] != "undefined" && typeof xhr['responseJSON']['form_reset'] != "undefined" && xhr['responseJSON']['form_reset'] == "yes" ){
+    			$("#add_themability_comment")[0].reset();
+    		}
+    	});
+    });
+    //-->
+</script>
+{{ footer }}

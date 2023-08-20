@@ -1,0 +1,87 @@
+{{ header }}{{ column_left }}
+<div id="content">
+   <div class="page-header">
+      <div class="container-fluid">
+         <div class="float-end">
+            <a href="{{ return }}" data-bs-toggle="tooltip" title="{{ button_return }}" class="btn btn-light" id="back_btn"><i class="fas fa-reply"></i></a>
+            <button type="submit" form="delete_themability_blog" formaction="{{ delete }}" data-bs-toggle="tooltip" title="{{ button_delete }}" onclick="return confirm('{{ text_confirm }}');" class="btn btn-danger"><i class="fa-regular fa-trash-can"></i></button>
+         </div>
+         <h1>{{ heading_title }}</h1>
+         <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumb-item"><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+            {% endfor %}
+         </ul>
+      </div>
+   </div>
+
+   <div class="container-fluid">
+      <div class="panel panel-default card">
+         <div class="panel-heading card-header"><i class="fa fa-list"></i> {{ text_list }}</div>
+         <div class="panel-body card-body">
+            <form action="{{ delete }}" method="post" enctype="multipart/form-data" id="delete_themability_blog" data-oc-toggle="ajax" class="">
+               <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                     <thead>
+                        <tr>
+                           <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" /></td>
+                           <td class="text-left">{% if sort == 'author' %} 
+                              <a href="{{ sort_author }}" class="{{ order|lower }}">{{ column_author }}</a>
+                              {% else %}   
+                              <a href="{{ sort_author }}">{{ column_author }}</a>
+                              {% endif %} 
+                           </td>
+                           <td class="text-left">{{ column_email }}</td>
+                           <td class="text-left">{{ column_status }}</td>
+                           <td class="text-right">{% if sort == 'date_added' %} 
+                              <a href="{{ sort_date_added }}" class="{{ order|lower }}">{{ column_date_added }}</a>
+                              {% else %}   
+                              <a href="{{ sort_date_added }}">{{ column_date_added }}</a>
+                              {% endif %} 
+                           </td>
+                           <td class="text-right">{{ column_action }}</td>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        {% if blog_comments %} 
+                        {% for comment in blog_comments %} 
+                        <tr>
+                           <td class="text-center">{% if comment.selected %}
+                              <input type="checkbox" name="selected[]" value="{{ comment.themability_blogger_comment_id}}" checked="checked" />
+                              {% else %}   
+                              <input type="checkbox" name="selected[]" value="{{ comment.themability_blogger_comment_id }}" />
+                              {% endif %} 
+                           </td>
+                           <td class="text-left">{{ comment.author }}</td>
+                           <td class="text-left">{{ comment.email }}</td>
+                           <td class="text-left">{{ comment.approved }}</td>
+                           <td class="text-right">{{ comment.date_added }}</td>
+                           <td class="text-right">
+                           {% if comment.is_approved %} 
+                              <a href="{{ comment.disapprove }}" id="comment_approved_btn" data-bs-toggle="tooltip" title="{{ button_disapprove }}" class="btn btn-warning"><i class="fa fa-refresh"></i></a>
+                           {% else %}   
+                              <a href="{{ comment.approve }}" id="comment_approved_btn" data-bs-toggle="tooltip" title="{{ button_approve }}" class="btn btn-success"><i class="fa fa-refresh"></i></a>
+                           {% endif %} 
+                              <a href="{{ comment.view }}" data-bs-toggle="tooltip" title="{{ button_view }}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                           </td>
+                        </tr>
+                        {% endfor %} 
+                        {% else %}   
+                        <tr>
+                           <td class="text-center" colspan="6">{{ text_no_results }}</td>
+                        </tr>
+                        {% endif %} 
+                     </tbody>
+                  </table>
+               </div>
+               <div class="row">
+                  <div class="col-sm-6 text-start">{{ pagination }}</div>
+                  <div class="col-sm-6 text-end">{{ results }}</div>
+               </div>
+            </form>
+            
+         </div>
+      </div>
+   </div>
+</div>
+{{ footer }}

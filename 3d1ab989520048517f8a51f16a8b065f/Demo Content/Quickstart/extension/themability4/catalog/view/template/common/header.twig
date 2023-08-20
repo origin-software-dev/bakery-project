@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{{ title }}</title>
+        <base href="{{ base }}" />
+
+        {% if description %}
+        <meta name="description" content="{{ description }}" />
+        {% endif %}
+
+        {% if keywords %}
+        <meta name="keywords" content="{{ keywords }}" />
+        {% endif %}
+        
+        <script src="{{ jquery }}" type="text/javascript"></script>
+        <link href="{{ bootstrap }}" type="text/css" rel="stylesheet" media="screen" />
+        <link href="{{ icons }}" type="text/css" rel="stylesheet" />        
+        <link href="{{ stylesheet }}" type="text/css" rel="stylesheet" />
+        <script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/moment.min.js"></script>
+        <script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/daterangepicker.js"></script>
+        <link href="catalog/view/javascript/jquery/datetimepicker/daterangepicker.css" rel="stylesheet" type="text/css" />
+        <script src="extension/themability4/catalog/view/javascript/common.js" type="text/javascript"></script>
+
+        <!-- intebility edit -->
+            <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+            <link href="https://fonts.googleapis.com/css2?family=Ribeye+Marrow&display=swap" rel="stylesheet">
+            {{ inline_style }}
+            <link href="{{ themabilitystyle }}" type="text/css" rel="stylesheet" />
+            <link href="{{ themabilityfont }}" type="text/css" rel="stylesheet" />
+            <link href="extension/themability4/catalog/view/stylesheet/owl.carousel.min.css" rel="stylesheet">
+            <script src="extension/themability4/catalog/view/javascript/owl.carousel.min.js" type="text/javascript"></script>
+            <script src="extension/themability4/catalog/view/javascript/jquery.elevateZoom.min.js" type="text/javascript"></script>
+            <script type="text/javascript" src="extension/themability4/catalog/view/javascript/custom.js"></script>
+
+            <!-- MegaMenu -->
+            <link href="extension/themability4megamenu/catalog/view/css/themability_megamenu.css" rel="stylesheet">
+            <script src="extension/themability4megamenu/catalog/view/javascript/themability_megamenu.js" type="text/javascript"></script>
+
+            <!-- Search -->
+            <link href="extension/themability4search/catalog/view/css/style.css" rel="stylesheet">
+            {% if advanceSearch %}
+            <script src="extension/themability4search/catalog/view/javascript/themability_search.js" type="text/javascript"></script>
+            {% endif %}
+            <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>           
+            <!-- .Search -->
+            {% if themability_quickview_status %}
+            <script src="extension/themability4quickview/catalog/view/javascript/themability_quickview.js" type="text/javascript"></script>
+            {% endif %}
+        <!-- .intebility edit -->
+
+        {% for style in styles %}
+        <link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+        {% endfor %}
+
+        {% for script in scripts %}
+        <script src="{{ script.href }}" type="text/javascript"></script>
+        {% endfor %}
+
+        {% for link in links %}
+        <link href="{{ link.href }}" rel="{{ link.rel }}" />
+        {% endfor %}
+
+        {% for analytic in analytics %}
+        {{ analytic }}
+        {% endfor %}
+    </head>
+    <body class="{{ class }} {{ theme_class }}">
+        <div class="loader"></div>
+        <div id="alert" class="toast-container position-fixed top-0 end-0 p-3"></div>
+        <nav id="top">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-6 top-left">
+                        <div class="contact-info">
+                            <a href="tel:{{ contact }}">
+                                <i class="fa fa-phone"></i>
+                                <span class="">{{ telephone }}</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-6 top-right">                        
+                        <div class="pull-left">
+                            {{ language }}
+                        </div>
+                        <div class="pull-left">
+                            {{ currency }}
+                        </div>                        
+
+                        <div id="top-links" class="nav pull-right d-none">
+                            <ul class="list-inline">
+                                <li class="hidden">
+                                    <a href="{{ wishlist }}" id="wishlist-total" title="{{ text_wishlist }}">
+                                        <i class="fa fa-heart"></i>
+                                        <span class="hidden-xs hidden-sm hidden-md">{{ text_wishlist }}</span>
+                                    </a>
+                                </li>
+                                <li class="hidden">
+                                    <a href="{{ shopping_cart }}" title="{{ text_shopping_cart }}">
+                                        <i class="fa fa-shopping-cart"></i>
+                                        <span class="hidden-xs hidden-sm hidden-md">{{ text_shopping_cart }}</span>
+                                    </a>
+                                </li>
+                                <li class="hidden">
+                                    <a href="{{ checkout }}" title="{{ text_checkout }}">
+                                        <i class="fa fa-share"></i>
+                                        <span class="hidden-xs hidden-sm hidden-md">{{ text_checkout }}</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <header>
+            <div class="container">
+                <div class="row header-inner align-items-center">
+                    <div class="col-xl-2 col-lg-6 col-sm-6 header-left">
+                        <div id="logo"> {% if logo %} <a href="{{ home }}">
+                                <img src="{{ logo }}" title="{{ name }}" alt="{{ name }}" class="img-fluid" />
+                            </a> {% else %} <h1>
+                                <a href="{{ home }}">{{ name }}</a>
+                            </h1> {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="header-center text-lg-center col-xl-8 col-lg-12">
+                        {{ menu }}
+                                               
+                    </div>
+
+                    <div class="header-right col-xl-2 col-lg-6 col-sm-6">
+                        {# search #}
+                        <div class="search-content">
+                            <div class="search-btn-outer">
+                                <i class="icon-search"></i>
+                            </div>
+                            <div class="header-search">
+                                {{ search }}                           
+                            </div>                         
+                        </div>
+
+                        {# account #}
+                        <div id="header_ac" class="dropdown">
+                            <a href="{{ account }}" class="dropdown-toggle btn-link" data-bs-toggle="dropdown">
+                                <i class="icon-user dropdown-icon"></i>
+                                <div class="dropdown-text d-none">
+                                    <span class="">{{ text_account }}</span>
+                                    <span class="dropdown-text-inner">{{ text_register }}</span>
+                                </div>                                
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-right account-link-toggle">
+                                {% if not logged %}
+                                <li><a href="{{ register }}" class="dropdown-item">{{ text_register }}</a></li>
+                                <li><a href="{{ login }}" class="dropdown-item">{{ text_login }}</a></li>
+                                {% else %}
+                                <li><a href="{{ account }}" class="dropdown-item">{{ text_account }}</a></li>
+                                <li><a href="{{ order }}" class="dropdown-item">{{ text_order }}</a></li>
+                                <li><a href="{{ transaction }}" class="dropdown-item">{{ text_transaction }}</a></li>
+                                <li><a href="{{ download }}" class="dropdown-item">{{ text_download }}</a></li>
+                                <li><a href="{{ logout }}" class="dropdown-item">{{ text_logout }}</a></li>
+                                {% endif %}
+                            </ul>
+                        </div>
+
+                        {# cart #}
+                        <div id="header-cart" class="cart-content">{{ cart }}</div>                        
+                    </div>
+                </div>
+            </div>
+        </header> 
+
+        <script type="text/javascript">
+        {# header_fixed #}
+            $(document).ready(function(){
+                var headerfixed = {{ headerfixed }};
+                if (headerfixed == 1) {
+                    $(window).scroll(function () {
+                    var windows_height = jQuery(window).height();                 
+                        if ($(this).scrollTop() > windows_height) {
+                            $('header').addClass('header-fixed');
+                            var scroll_header_height = $("header").height();
+                            $("body").css({"padding-top":scroll_header_height+"px"});    
+                        } else {
+                            $('header').removeClass('header-fixed');
+                            $("body").css({"padding-top":"0px"});
+                        }               
+                    });
+                }
+                else{
+                    $('header').removeClass('header-fixed');
+                    $("body").css({"padding-top":"0px"});
+                }
+            });
+        {# .header_fixed #}
+        </script>
+        
+        <main>

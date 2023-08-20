@@ -1,0 +1,22 @@
+{% if themability_quickview_status %}
+<!-- Themability_QuickView Wrapper -->	
+<div class="themability_quickview-wrapper"></div>
+<!-- Themability_QuickView Wrapper -->
+<!-- Themability_QuickView Loader -->
+<div class="themability_quickview-loader">
+	<div class="themability_quickview-loader-inner">
+	</div>
+</div>
+<!-- Themability_QuickView Loader -->
+<!-- Themability_QuickView Overlay -->
+<div class="themability_quickview-overlay"></div>
+<!-- Themability_QuickView Overlay -->
+
+<!-- Themability_QuickView Overlay Click-->
+<script type="text/javascript">
+    $('.themability_quickview-overlay').on('click',function () {
+        ThemabilityquickView.closeButton();
+    })
+</script>
+<!-- Themability_QuickView Overlay Click -->
+{% endif %}

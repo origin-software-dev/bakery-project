@@ -1,0 +1,12 @@
+<div class="sidebar">
+    <div class="box-content">
+        <h3 class="toggled relative">{{ heading_title }}</h3>
+        <ul class="list-unstyled">
+            {% for information in informations %}
+            <li><a href="{{ information.href }}" class="list-group-item">{{ information.title }}</a></li>
+            {% endfor %}
+            <li><a href="{{ contact }}" class="list-group-item">{{ text_contact }}</a></li>
+            <li><a href="{{ sitemap }}" class="list-group-item">{{ text_sitemap }}</a></li>
+        </ul>
+    </div>
+</div>

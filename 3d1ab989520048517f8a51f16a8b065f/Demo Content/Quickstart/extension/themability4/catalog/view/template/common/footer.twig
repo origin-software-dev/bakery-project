@@ -1,0 +1,81 @@
+</main>
+<footer class="mt-45">
+   <div class="container">
+      <div class="footer-top">
+         <div class="row">
+            <div class="col-lg-3">
+               {{ footer_left }}
+            </div>
+            {% if informations %}
+            <div class="col-lg-3">
+               <h2>{{ text_information }}</h2>
+               <ul class="list-unstyled">
+                  {% for information in informations %}
+                  <li><a href="{{ information.href }}">{{ information.title }}</a></li>
+                  {% endfor %}  
+                  <li><a href="{{ contact }}">{{ text_contact }}</a></li>
+               </ul>
+            </div>
+            {% endif %}
+            <div class="col-lg-3 d-none">
+               <h2>{{ text_service }}</h2>
+               <ul class="list-unstyled"></ul>
+            </div>
+            <div class="col-lg-3">
+               <h2>{{ text_extra }}</h2>
+               <ul class="list-unstyled">
+                  <li><a href="{{ manufacturer }}">{{ text_manufacturer }}</a></li>
+                  <li><a href="{{ voucher }}">{{ text_voucher }}</a></li>
+                  {% if affiliate %}
+                  <li><a href="{{ affiliate }}">{{ text_affiliate }}</a></li>
+                  {% endif %}
+                  <li><a href="{{ special }}">{{ text_special }}</a></li>
+                  <li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+                  {% if gdpr %}
+                  <li><a href="{{ gdpr }}">{{ text_gdpr }}</a></li>
+                  {% endif %}
+               </ul>
+            </div>
+            <div class="col-lg-3">
+               <h2>{{ text_account }}</h2>
+               <ul class="list-unstyled">
+                  <li><a href="{{ account }}">{{ text_account }}</a></li>
+                  <li><a href="{{ order }}">{{ text_order }}</a></li>
+                  <li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+                  <li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+                  <li><a href="{{ return }}">{{ text_return }}</a></li>
+               </ul>
+            </div>
+            <div class="col-lg-3">
+               {{ footer_right }}
+            </div>
+         </div>
+      </div>
+      <p class="copyright">{{ powered }}</p>
+      <!--
+         OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+         Please donate via PayPal to donate@opencart.com
+         //-->
+   </div>
+</footer>
+{{ cookie }}
+<script src="{{ bootstrap }}" type="text/javascript"></script>
+{% for script in scripts %}
+<script src="{{ script.href }}" type="text/javascript"></script>
+{% endfor %}
+<script type="text/javascript">
+jQuery(document).on("click","#product-manufacturer .manufacturer-tags a",function(event) {
+	if (this.hash !== ""){
+		event.preventDefault();
+		var hash = this.hash;
+		var header_height = jQuery('nav#top').height() + jQuery('header').height() + 180;
+		jQuery('html, body').animate({
+			scrollTop: jQuery(hash).offset().top - (header_height)
+		}, 800, function(){
+
+		});
+		return;
+	}
+});
+</script>
+</body></html>

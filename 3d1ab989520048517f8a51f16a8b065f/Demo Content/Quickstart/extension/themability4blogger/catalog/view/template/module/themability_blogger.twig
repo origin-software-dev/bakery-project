@@ -1,0 +1,123 @@
+<div class="container mt-45">
+    <div class="page-title">
+        <h3>{{ heading_title }}</h3>
+    </div>
+    <div class="block_box">
+		{% set blogForSlider = 1 %}
+		{% set blogCount = blogs|length %} 	
+		<div id="blog-carousel" class="blogs-block box-product {% if blogCount > blogForSlider %} blog-carousel {% else %} row {% endif %}">
+			{% if blogCount > blogForSlider %}
+				{% set class = 'col-xs-12' %}
+			{% else %}
+				{% set class = 'col-xl-4 col-md-6' %}
+			{% endif %}
+			{% for blog in blogs %}
+				<div class="product-block {{class}}">
+					<div class="product-block-inner align-items-center">
+						{% if blog.image %}        
+		                	{% set blogimage = blog.image %} 
+		                {% else %}          
+		                	{% set blogimage = 'image/no_image.png' %} 
+		                {% endif %}								 
+						<div class="blog-left">
+							<div class="blog-image">
+								<img src="{{ blogimage }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-responsive mw-100" />
+								<div class="post-image-hover"> </div>
+								<p class="post_hover">
+									<a class="icon zoom" title="{{ blog.title }}" href="{{ blogimage }}" data-lightbox="example-set"><i class="fa fa-search-plus"></i></a>
+									<a class="icon readmore_link" title="Click to view Read More" href="{{ blog.href }}"><i class="fa fa-link"></i></a>
+								</p>
+							</div>
+						</div>
+						<div class="blog-right">
+							<div class="date-time">
+								<i class="fa-regular fa-calendar-days d-none"></i>
+								<div class="blog-date">{{ blog.date_added_date }}</div>
+								<div class="blog-month">{{ blog.date_added_month }}</div>
+							</div>
+							<div class="date-comment blog-date-comment text-end">									
+								<div class="comment-wrapper">
+									<div class="write-comment-count">
+										<a href="{{ blog.href }}">
+											<i class="fa-solid fa-comments"></i>
+											<span>{{ blog.total_comments }} {{ entry_comment }}</span>
+										</a>
+									</div>
+								</div>											
+							</div>
+							<div class="blog-details">								
+								<h4 class="blog_title"><a href="{{ blog.href }}">{{ blog.title }}</a> </h4>
+								<div class="blog-desc"> {{ blog.description }}  </div> 
+								<div class="view-blog">
+									<div class="read-more">
+										<a href="{{ blog.href }}" class="btn btn-info"><i class="fa fa-link d-none"></i>{{ text_read_more }}</a>
+									</div>
+								</div>
+							</div>
+						</div> 
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="buttons text-center d-none">
+			<button type="button" onclick="location='{{ all_blogs }}';" class="btn btn-primary">{{ button_all_blogs }}</button>
+		</div>
+	</div>
+		
+</div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	const blogdirection = $('html').attr('dir');
+
+	$('.blog-carousel').each(function () {
+		if ($(this).closest('#column-left').length == 0 && $(this).closest('#column-right').length == 0) {
+			$(this).addClass('owl-carousel owl-theme');
+				const items = $(this).data('items') || 3;
+				const sliderOptions = {
+					loop: false,
+					nav: true,
+					navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+					dots: false,
+					items: items,					
+					responsiveRefreshRate: 200,
+					responsive: {
+					0: {
+						items: 1,
+						margin: 10
+					},
+					768: {
+						items: ((items - 1) > 1) ? (items - 1) : 1,
+						margin: 30
+					},
+					1200: {
+						items: items,
+						margin: 30
+					}
+				}
+			};
+			if (blogdirection == 'rtl') sliderOptions['rtl'] = true;
+			$(this).owlCarousel(sliderOptions);
+		}
+		else if ($(this).closest('#column-left').length > 0 || $(this).closest('#column-right').length > 0) {
+			$(this).addClass('owl-carousel owl-theme');
+				const items = 1;
+				const sliderOptions = {
+					loop: false,
+					nav: true,
+					navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+					dots: false,
+					items: items,
+					responsiveRefreshRate: 200,
+					responsive: {
+					0: { items: 1 },
+					601: { items: ((items - 1) > 1) ? (items - 1) : 1 },
+					1200: { items: items }
+				}
+			};
+			if (blogdirection == 'rtl') sliderOptions['rtl'] = true;
+			$(this).owlCarousel(sliderOptions);
+		}
+	});
+});	
+</script>

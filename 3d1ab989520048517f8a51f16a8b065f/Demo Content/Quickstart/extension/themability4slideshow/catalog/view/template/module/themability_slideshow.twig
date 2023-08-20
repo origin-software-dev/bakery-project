@@ -1,0 +1,122 @@
+    <!-- Themability_Slider -->
+      <script type="text/javascript">
+        window.themability_{{ module }}_slider_init = function() {
+
+            var themability_{{ module }}_SlideshowTransitions = [            
+                {$Duration:900,x:-1,y:1,$Delay:40,$Cols:10,$Rows:5,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad},$Opacity:2},
+                {$Duration:900,x:1,y:1,$Delay:12,$Cols:10,$Rows:5,$Reverse:true,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Assembly:260,$ChessMode:{$Column:3,$Row:12},$Easing:{$Left:$Jease$.$InCubic,$Top:$Jease$.$InCubic,$Opacity:$Jease$.$OutQuad},$Opacity:2},
+                {$Duration:900,$Delay:40,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$Easing:$Jease$.$InSine},
+                {$Duration:900,x:1,$Delay:20,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$During:{$Left:[0.3,0.7]},$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:260,$Easing:{$Left:$Jease$.$InOutExpo,$Clip:$Jease$.$InOutQuad},$Round:{$Top:0.8}},
+                {$Duration:900,$Delay:12,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationStraightStairs,$Assembly:2049,$Easing:$Jease$.$OutQuad},
+                {$Duration:900,$Delay:12,$Cols:10,$Rows:5,$Opacity:2,$Clip:15,$SlideOut:true,$Formation:$JssorSlideshowFormations$.$FormationZigZag,$Easing:$Jease$.$OutQuad}
+            ];
+
+            var themability_{{ module }}_options = {
+                $AutoPlay: 1,
+                $SlideshowOptions: {
+                    $Class: $JssorSlideshowRunner$,
+                    $Transitions: themability_{{ module }}_SlideshowTransitions,
+                    $TransitionsOrder: 1
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$
+                },
+                $BulletNavigatorOptions: {
+                    $Class: $JssorBulletNavigator$,
+                    $SpacingX: 16,
+                    $SpacingY: 16
+                }
+            };
+
+            var themability_{{ module }}_slider = new $JssorSlider$("themability_{{ module }}", themability_{{ module }}_options);
+
+            /*#region responsive code begin*/
+            var MAX_WIDTH_{{ module }} = {{ slider_width }};
+            function ScaleSlider() {
+                var containerElement = themability_{{ module }}_slider.$Elmt.parentNode;
+                var containerWidth = containerElement.clientWidth;
+                if (containerWidth) {
+                    var expectedWidth = Math.min(MAX_WIDTH_{{ module }} || containerWidth, containerWidth);
+                    themability_{{ module }}_slider.$ScaleWidth(expectedWidth);
+                } else {
+                    window.setTimeout(ScaleSlider, 30);
+                }
+            }
+
+            ScaleSlider();
+            $Jssor$.$AddEvent(window, "load", ScaleSlider);
+            $Jssor$.$AddEvent(window, "resize", ScaleSlider);
+            $Jssor$.$AddEvent(window, "orientationchange", ScaleSlider);
+            /*#endregion responsive code end*/
+        };
+    </script>
+
+    <style>   
+    .themability_slider{{ module }},
+    .themability_slider_section{{ module }} {
+        width: {{slider_width}}px;
+        height: {{slider_height}}px;        
+    }
+    </style>
+
+    <div id="themability_{{ module }}" class="themability_slider themability_slider{{ module }}">
+        <!-- Loading_Screen -->
+        <div data-u="loading" class="themability_slider_spin">           
+            <p style="position:relative;width: 15px;height: 15px;margin: auto;"><i class='fa fa-spinner fa-spin' aria-hidden='true' style="color: var(--secondary-hover-color);"></i></p>
+        </div>
+
+         <div data-u="slides" class="themability_slider_section themability_slider_section{{ module }}">
+          {% for banner in banners %}
+            <div class="">
+              {% if banner.link %}
+                <a href="{{ banner.link }}"><img  data-u="image" src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" /></a>
+              {% else %}
+                <img  data-u="image" src="{{ banner.image }}" alt="{{ banner.title }}" class="img-responsive" />
+              {% endif %}
+            </div>           
+          {% endfor %}        
+        </div>
+
+        <!-- Bullet_Navigator -->
+        <div data-u="navigator" class="slider_navigator" data-autocenter="1" data-scale="0.5" data-scale-bottom="0.75">
+            <div data-u="prototype" class="i" style="width:12px;height:12px;">
+                <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                    <path class="b" d="M11400,13800H4600c-1320,0-2400-1080-2400-2400V4600c0-1320,1080-2400,2400-2400h6800 c1320,0,2400,1080,2400,2400v6800C13800,12720,12720,13800,11400,13800z"></path>
+                </svg>
+            </div>
+        </div>
+        <!-- Arrow_Navigator -->
+        <div data-u="arrowleft" class="slider_arrow slider_arrow_left" data-autocenter="2" data-scale="0.75" data-scale-left="0.75">
+          <!-- <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="c" cx="8000" cy="8000" r="5920"></circle>
+                <polyline class="a" points="7777.8,6080 5857.8,8000 7777.8,9920 "></polyline>
+                <line class="a" x1="10142.2" y1="8000" x2="5857.8" y2="8000"></line>
+            </svg> -->
+            <i class="fa fa-angle-left"></i>
+        </div>
+        <div data-u="arrowright" class="slider_arrow slider_arrow_right" style="" data-autocenter="2" data-scale="0.75" data-scale-right="0.75">
+            <!-- <svg viewbox="0 0 16000 16000" style="position:absolute;top:0;left:0;width:100%;height:100%;">
+                <circle class="c" cx="8000" cy="8000" r="5920"></circle>
+                <polyline class="a" points="8222.2,6080 10142.2,8000 8222.2,9920 "></polyline>
+                <line class="a" x1="5857.8" y1="8000" x2="10142.2" y2="8000"></line>
+            </svg> -->
+            <i class="fa fa-angle-right"></i>
+        </div>
+    </div>
+    <script type="text/javascript">
+        themability_{{ module }}_slider_init();
+        jQuery(document).ready(function() {
+            setTimeout(function(){
+                jQuery('#column-left .themability_slider,#column-right .themability_slider, #content .themability_slider').css("width", "auto");
+            }, 1000);
+        });
+        $(window).on("load", function () {
+            setTimeout(function(){
+                jQuery('#column-left .themability_slider,#column-right .themability_slider, #content .themability_slider').css("width", "auto");
+            }, 50);
+            setTimeout(function(){
+                jQuery('#column-left .themability_slider,#column-right .themability_slider, #content .themability_slider').css("width", "auto");
+            }, 50);
+        });
+    </script>
+    <!-- .Themability_Slider -->

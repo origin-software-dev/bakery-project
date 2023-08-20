@@ -1,0 +1,128 @@
+{{ header }} 
+<div class="container">
+    <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li class="breadcrumb-item"><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+    </ul>
+    <div class="row">
+        {{ column_left }} 
+        {% if column_left and column_right %}
+        {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+        {% set class = 'col-sm-9' %}
+        {% else %}
+        {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}  all-blog">
+            {{ content_top }}
+            <h1>{{ heading_title }}</h1>
+            <div class="row">
+                {# ### getAllBlogs ### #}
+                {% set blog_on_page = 0 %}
+                {% if all_blogs %} 
+                {% for blog in all_blogs %}        
+                {% if blog.blog_data %}                      
+                <div class="col-md-6">
+                    <div class="product-block">
+                        <div class="product-block-inner">
+                            <div class="blog-left blog-left-content">
+                                {% if blog.blog_data.image %}        
+                                {% set blogimage = blog.blog_data.image %} 
+                                {% else %}          
+                                {% set blogimage = 'image/no_image.png' %} 
+                                {% endif %}
+                                <div class="blog-image">
+                                    <img src="{{ blogimage }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="img-responsive mw-100" />
+                                    <div class="post-image-hover"></div>
+                                    <p class="post_hover">
+                                        <a class="icon zoom" title="Click to view Full Image" href="{{ blogimage }}" data-lightbox="example-set"><i class="fa fa-search-plus"></i></a>
+                                        <a class="icon readmore_link" title="Click to view Read More" href="{{ blog.blog_data.href }}"><i class="fa fa-link"></i></a>
+                                    </p>                                    
+                                </div>
+                            </div>
+                            <div class="blog-right blog-right-content">
+                                <div class="date-time">
+                                    <i class="fa-regular fa-calendar-days d-none"></i>
+                                    <div class="blog-date">{{ blog.blog_data.date_added_date }}</div>
+                                    <div class="blog-month">{{ blog.blog_data.date_added_month }}</div>
+                                </div>
+                                <div class="date-comment blog-date-comment text-end">                                    
+                                    <div class="comment-wrapper">
+                                        <div class="write-comment-count">
+                                            <a href="{{ blog.blog_data.href }}">
+                                                <i class="fa-solid fa-comment-dots"></i>
+                                                <span>{{ blog.blog_data.total_comments }} {{ entry_comment }}</span>
+                                            </a>
+                                        </div>
+                                    </div>                                          
+                                </div>
+                                <div class="blog-details">                                
+                                    <h5 class="blog_title"><a href="{{ blog.blog_data.href }}">{{ blog.blog_data.title }}</a></h5>
+                                    <div class="blog-desc">{{ blog.blog_data.description }}</div>
+                                    <div class="view-blog">
+                                        <div class="read-more">
+                                            <a href="{{ blog.blog_data.href }}"  class="btn btn-info"><i class="fa fa-link d-none"></i>{{ text_read_more }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% set blog_on_page = blog_on_page + 1 %} 
+                {% else %}   
+                <div class="panel-body text-center">{{ text_no_blogs }}</div>
+                {% endif %}         
+                {% endfor %}
+            </div>
+            {% if ( pagination.total_pages > 0) %}
+            <div class="pagination-main">
+                <div class="row">
+                    <div class="col-md-6 pagination_result">               
+                        {{ text_showing }} {{ pagination.offset + 1 }} {{ text_to }} {{ pagination.offset + blog_on_page }} {{ text_of }} {{ pagination.total_blogs }} ({{ pagination.total_pages }} {{ text_pages }})
+                    </div>
+                    <div class="col-md-6 text-md-end">
+                        <ul class="pagination">
+                            {% if (pagination.page > 1) %}
+                            <li class="page-item prev"><a href="{{pagination.page_link}}&page={{ pagination.page-1 }}" class="page-link"> < </a></li>
+                            {% endif %}
+                            {% if (pagination.page > 3) %}
+                            <li class="page-item start"><a href="{{pagination.page_link}}&page=1" class="page-link">1</a></li>
+                            <li class="page-item dots"><a disabled class="page-link">...</a></li>
+                            {% endif %}
+                            {% if (pagination.page-2 > 0) %}
+                            <li class="page-item page"><a href="{{pagination.page_link}}&page={{ pagination.page-2 }}" class="page-link">{{ pagination.page-2 }}</a></li>
+                            {% endif %}
+                            {% if (pagination.page-1 > 0) %}
+                            <li class="page-item page"><a href="{{pagination.page_link}}&page={{ pagination.page-1 }}" class="page-link">{{ pagination.page-1 }}</a></li>
+                            {% endif %}
+                            <li class="page-item active"><a href="{{pagination.page_link}}&page={{ pagination.page }}" class="page-link">{{ pagination.page }}</a></li>
+                            {% if (pagination.page+1 < pagination.total_pages + 1) %}
+                            <li class="page-item page"><a href="{{pagination.page_link}}&page={{ pagination.page+1 }}" class="page-link">{{ pagination.page+1 }}</a></li>
+                            {% endif %}
+                            {% if (pagination.page+2 < pagination.total_pages + 1) %}
+                            <li class="page-item page"><a href="{{pagination.page_link}}&page={{ pagination.page+2 }}" class="page-link">{{ pagination.page+2 }}</a></li>
+                            {% endif %}
+                            {% if (pagination.page < pagination.total_pages - 2) %}
+                            <li class="page-item dots"><a disabled>...</a></li>
+                            <li class="page-item end"><a href="{{pagination.page_link}}&page={{ pagination.total_pages }}" class="page-link">{{ pagination.total_pages }}</a></li>
+                            {% endif %}
+                            {% if (pagination.page < pagination.total_pages) %}
+                            <li class="page-item next"><a href="{{pagination.page_link}}&page={{ pagination.page+1 }}" class="page-link"> > </a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+            {% else %}   
+            <div class="panel-body text-center">{{ text_no_blogs }}</div>
+            {% endif %} 
+            {# ### getAllBlogs ### #}
+            {{ content_bottom }}
+        </div>
+        {{ column_right }}
+    </div>
+</div>
+{{ footer }}

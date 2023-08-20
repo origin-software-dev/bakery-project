@@ -1,0 +1,366 @@
+
+*{
+    margin:0;
+    padding:0;
+}
+a{
+    color: #1e91cf;
+}
+body{
+    margin:0;
+    padding:0;
+    font-size:14px;
+    font-family:'Poppins', sans-serif;
+    color:#333;
+    line-height:2;
+}
+img{
+    border:0 none;
+    margin:5px 0;
+    max-width: 100%;
+}
+.documenter_content img{
+    border:1px solid #EEE;
+}
+ul li{
+    list-style-type:none;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6{
+    font-weight:normal;
+    font-family:'Open Sans',
+    Helvetica, sans-serif;
+    font-weight:600;
+}
+h1{
+    font-size:23px;
+   /* line-height:80px;
+    height:80px;*/
+    margin-bottom:10px;
+}
+h3 a,
+h2 a{
+    text-decoration:none;
+    color:#000;
+}
+h2 a.top {
+    font-size: 12px;
+    font-weight: normal; 
+    adding-top: 10px;
+    color: #777777;
+    white-space: nowrap;
+    float: right;
+}
+h2 a.top:after {
+    font-family: 'FontAwesome';
+    font-size: 12px; 
+    padding-left: 3px;
+    content:'\f106';
+}
+h2 a.top:hover { 
+    color: #333333;
+}
+h2{
+    font-size:22px;
+    color: #14628c;
+    border-bottom:1px solid #d4d2d2;
+    margin-bottom:15px;
+    padding-bottom:10px;
+}
+h2.subtitle {
+    font-size: 20px;
+}
+h2.tips{ 
+    font-size:17px;
+}
+h3{
+    font-size:16px;
+    color:#777777;
+}
+p{
+    /*line-height:24px;*/
+}
+.red{
+    color:#F00;
+}
+.clear{
+    clear:both;
+}
+.bottom-space{
+    margin-bottom: 20px;
+}
+#documenter_sidebar{
+	background: #242d37 none repeat scroll 0 0 ;
+    box-shadow: 0 0 5px rgba(3, 3, 3, 0.5);
+    height: 100%;
+    left: 0;
+    min-height: 100%;
+    position: fixed;
+    width: 18%;
+    z-index: 100;
+	overflow:auto;        
+}
+.logo { 
+    margin: 20px 0 15px 15px;
+    text-align: center;
+}
+.logo img {
+    max-width:50%;
+    margin: 0 auto;
+}
+.documenter_content{
+    width:78%;
+    float:left;
+    margin-left:20%;
+}
+ul.menu{
+    margin:0 0 40px 0px;
+    padding:0;
+}
+ul.menu li a{
+    transition: 1s;
+    color: #b3cbdd;
+    display: block;
+    line-height: 30px;
+    padding: 5px 15px;
+    text-align: left;
+    text-decoration: none;
+    font-weight: 400;
+    border-top: 1px solid #2b3642;
+}
+ul.menu li a:hover {
+    padding-left: 25px;
+}
+ul.menu li a.active,
+ul.menu li a:hover{
+    background: #171b21 none repeat scroll 0 0;
+    color: #0b91d2;
+}
+ul.menu li a:selected{
+    background:#fff;
+    color:#3984ab;
+}
+.mb10{
+    margin-bottom:10px;
+}
+ul.modual{
+    margin:0 0 40px 40px;
+    padding:0;
+}
+ul.modual li{
+    line-height:28px;
+    font-size:14px;
+}
+ul.modual li a{
+    line-height:24px;
+    text-decoration:underline; color:#00F; margin-left:8px}
+
+
+ul.sublinks li a {
+    padding-left:30px;
+}
+ul.subsublinks li a {
+    padding-left:50px;
+}
+.arrowimg {
+    background: url(../img/arrow.gif) no-repeat scroll 0 6px transparent;
+    padding-left: 10px;
+	padding-bottom: 10px;
+}
+.subsubheader {
+    font-size: 13px;
+    font-style: normal;
+    margin-left:30px;
+}
+em	{
+    font-size:13px;
+}
+.notice {
+    margin-top:10px;
+}
+.note-msg, .notice-msg {
+    background-color: #FAFAEC;
+    border-color: #FCD344;
+    color: #3D6611;
+}
+.error-msg, .success-msg, .note-msg, .notice-msg {
+    border-style: solid !important;
+    border-width: 1px !important;
+    font-size: 13px !important;
+    padding: 4px 12px !important;
+}
+
+.top_bottom_line  {
+    border-top:1px solid #DDDDDD;
+    border-bottom:1px solid #DDDDDD;
+    padding:8px 0;
+    margin:10px 0 0 0;
+    text-align:center;
+    font-size:17px;
+}
+.buttons {
+    margin: 10px 0;
+}
+.buttons a{
+	background-color: #46CBB0;
+    border-radius: 2px;
+    box-shadow: 1px 1px 0 #1D5749;
+    color: #FFFFFF;
+    font-size: 14px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding: 10px 30px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms linear 0s;
+}
+.buttons a:hover{
+	background-color: #F06159;
+}
+.link.buttons a{
+	float: left;
+}
+.box.buttons a{
+	clear:both;
+	display: inline-block;
+}
+.red{
+    color: #14628c;
+    font-weight: normal;
+    line-height: 20px;
+}
+.block1 {
+    float: left;
+    margin-right: 10px;
+    margin-top: -10px;
+    width: 28%;
+}
+.block2 {
+    float: right;
+    width: 70%;
+	font-size: 13px;
+	line-height:20px;
+	font-weight:normal;
+}
+.block2 strong{
+    margin-bottom: 5px;
+}
+.shortcodes .mb10 > strong{
+    letter-spacing: 1px;
+}
+#additional ol {
+    padding-left: 20px;
+}
+#home h1 {
+    text-align: center;
+    font-size: 28px;
+    text-transform: capitalize;
+}
+#home h1 span {
+    color: #1e91cf;
+}
+h2.steps {
+    font-weight: 600;
+    background: #f5f5f5;
+    border: none;
+    padding: 10px 15px;
+    line-height: 22px;
+    font-size: 22px;
+    color: #333;
+    margin-top: 20px;
+}
+ol.install-steps {
+    padding-left: 20px;
+}
+h3.sub-head:after {
+    background: none repeat scroll 0 0 #000000;
+    bottom: 10px;
+    content: "";
+    height: 1px;
+    left: 0;
+    position: absolute;
+    width: 100px;
+}
+h3.sub-head {
+    color: #000000;
+    padding-bottom: 20px;
+    position: relative;
+}
+h2.sub-head {
+	border: medium none;
+    color: #4FBFA8;
+    display: inline-block;
+    font-size: 18px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    padding-bottom: 0;
+}
+h4 {
+    color: #777777;
+    font-size: 20px;
+    padding-bottom: 10px;
+}
+h5 {
+    font-size: 16px;
+    padding-bottom: 0;
+}
+.borderclass {
+    border:1px solid #DDD;
+    padding:15px;
+}
+.footer-bottom a{
+    color: #14628c;
+}
+.scrollToTop {
+    position: fixed;
+    color: #ffffff;
+    font-size: 20px;
+    line-height: 40px;
+    right: 15px;
+    bottom: 15px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    background-color: #1e91cf;
+    z-index: 5;
+    -webkit-animation: movebounce 3s linear infinite;
+    animation: movebounce 3s linear infinite;
+}
+.scrollToTop:hover,
+.scrollToTop:focus {
+    background-color: #000;
+    border-color: #000;
+    color: #ffffff;
+}
+span.color_box {
+    color: transparent;
+    margin: 0 4px;
+    border: 1px solid black;
+}
+@keyframes movebounce {
+    0% {
+        transform: translateY(0px); 
+    }
+    50% {
+        transform: translateY(15px); 
+    }
+    100% {
+        transform: translateY(0px); 
+    } 
+}
+@keyframes moveleftbounce {
+    0% {
+        transform: translateX(0px); 
+    }
+    50% {
+        transform: translateX(15px); 
+    }
+    100% {
+        transform: translateX(0px); 
+    } 
+}
+

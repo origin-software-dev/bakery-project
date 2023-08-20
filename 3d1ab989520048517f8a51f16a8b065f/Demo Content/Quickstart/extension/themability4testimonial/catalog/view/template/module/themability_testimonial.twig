@@ -1,0 +1,71 @@
+{% set count = 0 %}
+{% set rows = slide.rows %}
+{% if not rows %}
+	{% set rows = 1 %}
+{% endif %}
+<div class="themability-testimonial-block mt-45">
+	<div class="themability-testimonial box-module box-content" style="background: var(--secondary-color) url({{ testimonial_background_image }}) center center; background-size: cover;">
+		<div class="container">
+			<div class="row">
+				<div class="testimonial-section">
+					<div class="page-title testimonial-title toggled"><h3>{{ title }}</h3></div>					
+					<div class="owl-container">
+						<div class="block-content">
+							<div class="slideTestimonial owl-carousel owl-theme">
+								{% for themability_testimonial in themability_testimonials %}
+									{% if count % rows == 0 %}
+										<div class="row-items">
+											{% set count = count + 1 %}
+											{% endif %}
+											<div class="tetimonial-image-content">
+												<div class="themability-testimonial-images">
+													<img src="{{ themability_testimonial.image }}" alt="{{ themability_testimonial.customer_name }}" class="m-image-auto m-auto rounded-circle img-responsive">
+												</div>
+												<div class="themability-testimonial-content">
+													<div class="themability-testimonial-author">{{ themability_testimonial.customer_name }}</div>
+													<div class="themability-testimonial-customer">{{ text_customer }}</div>
+												</div>
+											</div>
+											<div class="themability-testimonial-text">{{ themability_testimonial.content }}</div>
+											<i class="testimonial-quotes icon-quotes d-none"></i>
+											{% if count % rows == 0 or count == count.testimonials %}
+										</div>
+									{% endif %} 
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script><!--
+	$(document).ready(function() {
+		setTestimonialCarousel();
+	});
+	function setTestimonialCarousel() {
+		const direct = $('html').attr('dir');
+		const items = {{ slide.items }};
+		$(".slideTestimonial").each(function (){
+			const sliderOptions = {
+				loop: true,
+				margin: 30,
+				nav: {% if slide.navigation %} true {% else %} false {% endif %},
+				navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+				dots: {% if slide.pagination %} true {% else %} false {% endif %},
+				items: {{ slide.items }},
+				autoplay: {% if slide.auto %} true {% else %} false {% endif %},
+				autoplayTimeout: {{ slide.speed }},
+				responsiveRefreshRate: 200,
+				responsive: {
+					0: { items: 1 },
+					1200: { items: {{ slide.items }} }
+				}
+			};
+
+			if (direct == 'rtl') sliderOptions['rtl'] = true;
+	    		$(this).owlCarousel(sliderOptions);
+		});
+	}		
+//--></script>

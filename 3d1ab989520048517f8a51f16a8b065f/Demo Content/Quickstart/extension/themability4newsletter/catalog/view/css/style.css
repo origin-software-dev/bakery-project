@@ -1,0 +1,304 @@
+/*----------------------------------------------*/
+/* Start Newsletter Popup */
+/*----------------------------------------------*/
+.modal-dialog-centered {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: calc(100% - (.5rem * 2));
+}
+.modal-content {
+    border: none;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    border-radius: 0;
+    box-shadow: 0 0 10px rgb(225 169 141 / 65%);
+    -webkit-box-shadow: 0 0 10px rgb(225 169 141 / 65%);
+    -moz-box-shadow: 0 0 10px rgba(225, 169, 141, 0.65);
+    -o-box-shadow: 0 0 10px rgba(225, 169, 141, 0.65);
+}
+.themability-newsletter-popup-message .alert {
+    position: relative;
+    margin: 15px 0 0 0;
+}
+.themability-newsletter-image {
+    text-align: center;
+    height: 100%;
+    background-size: cover;
+}
+.themability-newsletter-content-innner {
+    max-width: 400px;
+    margin: auto;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+.themability-newsletter-wrap .themability-newsletter-content {
+    padding-left: 0;
+}
+.themability-newsletter-content-innner h3 {
+    font-size: 24px;
+    margin: 0;
+    font-weight: 600;
+}
+.themability-newsletter-content-innner p {
+    margin: 15px 0 0;
+}
+#themability_newsletter_usr_popup_email {
+    margin: 15px auto 20px;
+    border-color: var(--primary-hover-color);
+    height: 40px;
+    text-align: center;
+}
+#themability_newsletter_usr_popup_email::placeholder {
+    color: var(--secondary-light-color);
+}
+#frmthemabilitynewsletterpopup button {
+    background-color: var(--primary-hover-color);
+    color: var(--secondary-color);
+}
+#frmthemabilitynewsletterpopup button:hover {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.themability-newsletter-btn-close.btn-close {
+    height: 28px;
+    width: 28px;
+    text-shadow: none;
+    opacity: 1;
+    font-size: 16px;
+    padding: 0;
+    border-radius: 0;
+    border: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: var(--primary-hover-color);
+    color: var(--secondary-color);
+    transition: all 350ms ease-out 0s;
+    -moz-transition: all 350ms ease-out 0s;
+    -o-transition: all 350ms ease-out 0s;
+    -webkit-transition: all 350ms ease-out 0s;
+}
+.themability-newsletter-btn-close.btn-close:hover {
+    background: var(--primary-color);
+}
+.news-checkbox-close {
+    margin-top: 15px;
+}
+.themability-newsletter-btn-close i {
+    display: block;
+    transition: all 350ms ease-out 0s;
+    -moz-transition: all 350ms ease-out 0s;
+    -o-transition: all 350ms ease-out 0s;
+    -webkit-transition: all 350ms ease-out 0s;
+}
+.themability-newsletter-btn-close:hover i {
+    transform: rotate(90deg);
+}
+.themability-newsletter-content-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#popup_dont_show_again,
+.themability-newsletter-content-bottom label {
+    margin: 0 5px;
+    font-size: 16px;
+}
+#themability-newsletter-popup .modal-body {
+    margin: 15px;
+    border: 1px solid var(--primary-hover-color);
+    padding: 15px;
+}
+.themability-newsletter-popup .modal-dialog {
+    margin: 20px auto;
+    max-width: 700px;
+    width: 100%;
+    text-align: center;
+}
+@media (max-width: 767px) {
+    .themability-newsletter-popup .modal-dialog {
+        width: 90%;
+    }
+    .themability-newsletter-wrap .themability-newsletter-content {
+        padding: 15px;
+    }
+    .themability-newsletter-content-innner p {
+        margin: 10px 0 0;
+    }
+    .themability-newsletter-content-innner {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+    .themability-newsletter-image{
+        max-width: 227px;
+        min-height: 250px;
+        margin: auto;
+    }
+}
+
+/* ----- 
+Start Newsletter
+----- */
+.news-inner {
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+.news .icon-newslatter {
+    background: var(--secondary-color);
+    color: var(--primary-hover-color);
+    height: 100px;
+    width: 100px;
+    line-height: 100px;
+    display: block;
+    font-size: 48px;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 20px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+.news .title-text h3 {
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--primary-hover-color);
+}
+.news .news-description {
+    font-size: 18px;
+}
+.news .subscribe-form {
+    display: flex;
+    background: var(--secondary-color);
+    border-radius: 5px;
+    box-shadow: 0 4px 4px rgb(0 0 0 / 25%);
+}
+.news .subscribe-btn {
+    border-radius: 5px;
+    padding: 8px 20px;
+}
+#themability_newsletter_usr_email {
+    border: none;
+    background: transparent;
+    height: 44px;
+    padding: 10px 20px;
+}
+#frmthemabilitynewsletter .subscribe-btn {
+    border-radius: 5px;
+    background: var(--primary-hover-color);
+    color: var(--secondary-color);
+    padding: 10px 30px;
+}
+#frmthemabilitynewsletter .subscribe-btn:hover {
+    background: var(--primary-color);
+}
+.themability-newsletter-message .alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 99;
+}
+.newsletter_form {
+    width: 100%;
+}
+
+/* newsletter */
+#column-left .news .page-title,
+#column-right .news .page-title {
+    display: block!important;
+}
+#column-left .news-info .page-title,
+#column-right .news-info .page-title {
+    display: none!important;
+}
+#column-left .news-info>*,
+#column-right .news-info>* {
+    text-align: center;
+}
+#column-left #frmthemabilitynewsletter,
+#column-right #frmthemabilitynewsletter {
+    padding: 15px 0 0;
+}
+#column-left i.icon-mail,
+#column-right i.icon-mail {
+    height: 50px;
+    width: 50px;
+    line-height: 52px;
+    margin: 0 auto 10px;
+    display: block;
+}
+#column-left .subscribe-form,
+#column-right .subscribe-form {
+    display: block;
+    text-align: center;
+    max-width: unset;
+    margin: auto;
+}
+#column-left #themability_newsletter_usr_email,
+#column-right #themability_newsletter_usr_email {
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+#column-left .themability-newsletter-form,
+#column-right .themability-newsletter-form {
+    padding: 0;
+}
+#column-left .news .block_box,
+#column-right .news .block_box {
+    display: inline-block;
+    vertical-align: middle;
+}
+@media (max-width: 1440px) {    
+    .news .icon-newslatter{
+        height: 80px;
+        width: 80px;
+        line-height: 80px;
+        font-size: 38px;
+        margin-right: 10px;
+    }
+    .news-inner {
+        padding: 20px;
+    }
+    .news .news-description {
+        font-size: 16px;
+    }
+}
+@media (max-width: 1199px) {   
+    .news .title-text h3 {
+        font-size: 22px;
+    }
+    .news .news-description {
+        font-size: 14px;
+    }
+}
+@media (max-width: 991px) {
+     .news .subscribe-form{
+        margin: 15px auto auto;
+    }
+    .newsletter_description_outer {
+        justify-content: center;
+    }
+    #popup_dont_show_again,
+    .themability-newsletter-content-bottom label {
+        font-size: 14px;
+    }
+}
+@media (max-width: 480px) {
+    .newsletter_description_outer{
+        display: block !important;
+        text-align: center;
+    }
+    .news .icon-newslatter{
+        margin: auto auto 10px auto;
+    }
+    #themability_newsletter_usr_email{
+        padding: 10px 15px;
+    }
+    .news .subscribe-btn{
+        padding: 8px 15px;
+    }
+}

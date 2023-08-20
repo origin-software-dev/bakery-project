@@ -1,0 +1,142 @@
+{{ header }}{{ column_left }}
+<div id="content">
+   <div class="page-header">
+      <div class="container-fluid">
+         <div class="float-end">
+		 	<a href="{{ themability_testimoniallist }}" data-bs-toggle="tooltip" title="{{ themability_testimonial_list }}" class="btn btn-light"><i class="fa fa-list"></i></a>
+            <button type="submit" form="form_module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+            <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light" id="back_btn" ><i class="fas fa-reply"></i></a>
+         </div>
+         <h1>{{ heading_title }}</h1>
+         <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumb-item"><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+            {% endfor %}
+         </ul>
+      </div>
+   </div>   
+   <div class="container-fluid">
+		<div class="card">
+			<div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_edit }}</div>
+			<div class="card-body">
+				<form action="{{ save }}" method="post" enctype="multipart/form-data" id="form_module" data-oc-toggle="ajax">	
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-name"><span data-toggle="tooltip" title="{{ entry_name }}">{{ entry_name }}</span></label>
+						<div class="col-sm-10">
+							<input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+							<div id="error-name" class="invalid-feedback"></div>
+						</div>
+					</div> 
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-name"><span data-toggle="tooltip" title="{{ entry_title }}">{{ entry_title }}</span></label>
+						<div class="col-sm-10">
+							{% for language in languages %}
+							<div class="input-group mb-3">
+								<span class="input-group-text"><img src="{{ language.image }}" title="{{ language.name }}"/></span> 
+								<input type="text" name="title[{{ language.code }}][title]" value="{{ title[language.code].title ? title[language.code].title  }}" placeholder="" id="input-title{{ language.language_id }}" class="form-control" />
+							</div>
+							{% endfor %}
+							<div id="error-name" class="invalid-feedback"></div>
+						</div>
+					</div> 
+
+					<div class="row mb-3">
+						<label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+						<div class="col-sm-10">
+						<div class="form-check form-switch form-switch-lg">
+							<input type="hidden" name="status" value="0"/>
+							<input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
+						</div>
+						</div>
+					</div>					
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-width"><span data-toggle="tooltip" title="{{ entry_width_height }}">{{ entry_width_height }}</span></label>
+						<div class="col-sm-5">
+							<input type="text" name="width" value="{{ width }}" placeholder="{{ entry_width }}" id="input-width" class="form-control" />
+							<div id="error-width" class="invalid-feedback"></div>
+						</div>
+						<div class="col-sm-5">
+							<input type="text" name="height" value="{{ height }}" placeholder="{{ entry_height }}" id="input-height" class="form-control" />
+							<div id="error-height" class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label for="input-auto" class="col-sm-2 col-form-label">{{ entry_auto }}</label>
+						<div class="col-sm-10">
+						<div class="form-check form-switch form-switch-lg">
+							<input type="hidden" name="auto" value="0"/>
+							<input type="checkbox" name="auto" value="1" id="input-auto" class="form-check-input"{% if auto %} checked{% endif %}/>
+						</div>
+						</div>
+					</div>
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-items"><span data-toggle="tooltip" title="{{ entry_items }}">{{ entry_items }}</span></label>
+						<div class="col-sm-10">
+							<input type="text" name="items" value="{{ items }}" placeholder="{{ entry_items }}" id="input-items" class="form-control" />
+							<div id="error-items" class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-limit"><span data-toggle="tooltip" title="{{ entry_limit }}">{{ entry_limit }}</span></label>
+						<div class="col-sm-10">
+							<input type="text" name="limit" value="{{ limit }}" placeholder="{{ entry_limit }}" id="input-limit" class="form-control" />
+							<div id="error-limit" class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="form-group required row mb-3">
+						<label class="col-sm-2 col-form-label" for="input-speed"><span data-toggle="tooltip" title="{{ entry_speed }}">{{ entry_speed }}</span></label>
+						<div class="col-sm-10">
+							<input type="text" name="speed" value="{{ speed }}" placeholder="{{ entry_speed }}" id="input-speed" class="form-control" />
+							<div id="error-speed" class="invalid-feedback"></div>
+						</div>
+					</div>
+
+					<div class="row mb-3">
+						<label for="input-navigation" class="col-sm-2 col-form-label">{{ entry_navigation }}</label>
+						<div class="col-sm-10">
+						<div class="form-check form-switch form-switch-lg">
+							<input type="hidden" name="navigation" value="0"/>
+							<input type="checkbox" name="navigation" value="1" id="input-navigation" class="form-check-input"{% if navigation %} checked{% endif %}/>
+						</div>
+						</div>
+					</div>
+	
+					<div class="row mb-3">
+						<label for="input-pagination" class="col-sm-2 col-form-label">{{ entry_pagination }}</label>
+						<div class="col-sm-10">
+						<div class="form-check form-switch form-switch-lg">
+							<input type="hidden" name="pagination" value="0"/>
+							<input type="checkbox" name="pagination" value="1" id="input-pagination" class="form-check-input"{% if pagination %} checked{% endif %}/>
+						</div>
+						</div>
+					</div>
+
+					<div class="row mb-3 required">
+                        <label class="col-sm-2 col-form-label">{{ entry_testimonial_background_image }}</label>
+                        <div class="col-sm-10">
+                        <div class="card image testimonial_background_image">
+                           <img src="{{ testimonial_background_image_thumb }}" alt="" title="" id="thumb-testimonial_background_image" data-oc-placeholder="{{ testimonial_background_image_placeholder }}" class="card-img-top"/> 
+                           <input type="hidden" name="testimonial_background_image" value="{{ testimonial_background_image }}" id="input-testimonial_background_image"/>
+                           <div class="card-body">
+                           <button type="button" data-oc-toggle="image" data-oc-target="#input-testimonial_background_image" data-oc-thumb="#thumb-testimonial_background_image" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
+                           <button type="button" data-oc-toggle="clear" data-oc-target="#input-testimonial_background_image" data-oc-thumb="#thumb-testimonial_background_image" class="btn btn-warning btn-sm btn-block"><i class="fa-regular fa-trash-can"></i> {{ button_clear }}</button>
+                           </div>
+                        </div>
+                        <div id="error-testimonial-background-image" class="invalid-feedback"></div>
+                        </div>
+                    </div>
+					
+				</form>
+			</div>
+			
+    	</div>        
+  	</div>
+</div>
+{{ footer }}

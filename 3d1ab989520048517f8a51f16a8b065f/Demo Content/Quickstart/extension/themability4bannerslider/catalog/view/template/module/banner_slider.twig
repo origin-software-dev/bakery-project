@@ -1,0 +1,97 @@
+<div class="container mt-15">    
+    <div class="banner_slider slide{% if effect == 'fade' %} carousel-fade{% endif %}">
+		{% set bannerForSlider = 1 %}
+		{% set bannerCount = banner_slider|length %}
+		<div id="banner-slider-carousel-{{banner_slider_module}}" class="banner-slider-block box-banner-slider {% if bannerCount > bannerForSlider %} banner-slider-carousel-{{ banner_slider_module }} {% else %} row {% endif %}" data-items="{{ banner_slider_items }}" data-laptopitems="{{ banner_slider_laptop_items }}" data-tabletitems="{{ banner_slider_tablet_items }}" data-mobileitems="{{ banner_slider_mobile_items }}">
+			{% if bannerCount > bannerForSlider %}
+				{% set class = 'col-xs-12' %}
+			{% else %}
+				{% set class = 'col-xl-4 col-md-6' %}
+			{% endif %}
+			{% for banner_slides in banner_slider %}
+				<div class="banner-slider-block {{class}}">
+					<div class="banner-slider-block-inner align-items-center">
+						{% if banner_slides.image %}
+		            		{% set banner_slides_image = banner_slides.image %} 
+						{% else %}
+							{% set banner_slides_image = 'image/no_image.png' %} 
+						{% endif %}
+						<div class="banner-slider-image">
+							{% if banner_slides.link %}	
+								<a class="banner-slider-link" href="{{ banner_slides.link }}" title="{{ heading_title }}" >
+									<img src="{{ banner_slides_image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="banner-slider-img img-responsive" />
+								</a>
+							{% else %}
+								<img src="{{ banner_slides_image }}" alt="{{ heading_title }}" title="{{ heading_title }}" class="banner-slider-img img-responsive" />
+							{% endif %}	
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>		
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	const banner_slider_direction = $('html').attr('dir');
+	$('.banner-slider-carousel-{{ banner_slider_module }}').each(function () {
+		if ($(this).closest('#column-left').length == 0 && $(this).closest('#column-right').length == 0) {
+			$(this).addClass('owl-carousel owl-theme');
+				const items = $(this).data('items') || 4;
+				const laptop_items = $(this).data('laptopitems') || 3;
+				const tablet_items = $(this).data('tabletitems') || 2;
+				const mobile_items = $(this).data('mobileitems') || 1;
+				const sliderOptions = {
+					loop: {{ loop }},
+					autoplay: {{ autoplay }},
+					nav: {{ navigation }},
+					navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+					dots: {{ pagination }},
+					autoplayTimeout: {{ interval }},
+					items: items,
+					responsiveRefreshRate: 200,
+					responsive: {
+					0: {
+						items: mobile_items,
+						margin: 10
+					},
+					768: {
+						items: tablet_items,
+						margin: 10
+					},
+					992: {
+						items: laptop_items,
+						margin: 30
+					},
+					1200: {
+						items: items,
+						margin: 30
+					}
+				}
+			};
+			if (banner_slider_direction == 'rtl') sliderOptions['rtl'] = true;
+			$(this).owlCarousel(sliderOptions);
+		} else if ($(this).closest('#column-left').length > 0 || $(this).closest('#column-right').length > 0) {
+			$(this).addClass('owl-carousel owl-theme');
+				const items = 1;
+				const sliderOptions = {
+					loop: {{ loop }},
+					autoplay: {{ autoplay }},
+					nav: {{ navigation }},
+					navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+					dots: {{ pagination }},
+					autoplayTimeout: {{ interval }},
+					items: items,
+					responsiveRefreshRate: 200,
+					responsive: {
+					0: { items: items },
+					601: { items: items },
+					1200: { items: items }
+				}
+			};
+			if (banner_slider_direction == 'rtl') sliderOptions['rtl'] = true;
+			$(this).owlCarousel(sliderOptions);
+		}
+	});
+});	
+</script>

@@ -1,0 +1,51 @@
+<div class="news mt-45">
+	<div class="container">
+		<div class="news-inner" style="background: var(--secondary-color) url({{ newsletter_image }}) no-repeat center center; background-size: cover;">		
+			<div class="themabilitynewsletterblock">
+				<div class="themability-newsletter-form block-content box-content">
+					<div class="page-title toggled d-none">
+						<h3>{{ newsletter_title }}</h3>
+					</div>
+					<div class="block_box">				
+						<div class="news-info">
+							<div class="row">
+								<div class="col-lg-6">
+									<div class="newsletter_description_outer d-flex align-items-center">
+										<i class="icon-newslatter"></i>
+										<div class="news-desc">
+											<div class="title-text">
+												<h3>{{ newsletter_title }}</h3>
+												<h3 class="d-none">{{ newsletter_subtitle }}</h3>
+											</div>
+											<div class="news-description">{{ newsletter_description }}</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-lg-6 d-flex align-items-center">
+									<div class="newsletter_form">
+										<form action="{{ user_subscribe }}" method="post" id="form_themability_newsletter" data-oc-toggle="ajax">
+											<div class="subscribe-form">
+												<input type="email" name="themability_newsletter_usr_email" id="themability_newsletter_usr_email" placeholder="{{ entry_user_email }}" class="form-control input-lg inputNew txtemail">
+												<button type="submit" data-bs-toggle="tooltip" title="{{ button_save }}" class="subscribe-btn btn-default">{{ entry_subscribe }}</button>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript"><!--
+$( document ).ready(function() {
+	$( document ).ajaxComplete(function(event, xhr, options) {
+		event.preventDefault();		
+		if( typeof xhr['responseJSON'] != "undefined" && typeof xhr['responseJSON']['form_reset'] != "undefined" && xhr['responseJSON']['form_reset'] == "yes" ){
+			$("#form_themability_newsletter")[0].reset();
+		}
+	});
+});
+//--></script>

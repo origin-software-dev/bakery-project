@@ -1,0 +1,12 @@
+.banner-msg {
+    margin: 7px auto;
+    text-transform: capitalize;
+    color: #fff;
+    background: #1e91cf;
+    letter-spacing: 0.1px;
+    padding: 6px 28px;
+    text-align: left;
+    width: auto;
+    display: inline-block;
+    border-radius: 3px;
+}

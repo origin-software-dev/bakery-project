@@ -1,0 +1,126 @@
+{{ header }}{{ column_left }}
+<div id="content">
+   <div class="page-header">
+      <div class="container-fluid">
+         <div class="float-end">
+            <button type="submit" form="form_module" data-bs-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fas fa-save"></i></button>
+            <a href="{{ back }}" data-bs-toggle="tooltip" title="{{ button_back }}" class="btn btn-light"><i class="fas fa-reply"></i></a>
+         </div>
+         <h1>{{ heading_title }}</h1>
+         <ul class="breadcrumb">
+            {% for breadcrumb in breadcrumbs %}
+            <li class="breadcrumb-item"><a href="{{ breadcrumb['href'] }}">{{ breadcrumb['text'] }}</a></li>
+            {% endfor %}
+         </ul>
+      </div>
+   </div>
+   <div class="container-fluid">
+      {% if error_warning %}
+      <div class="alert alert-danger alert-dismissible"><i class="fas fa-exclamation-circle"></i> {{ error_warning }}
+         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+      {% endif %}
+      <div class="card">
+         <div class="card-header"><i class="fas fa-pencil-alt"></i> {{ text_edit }}</div>
+         <div class="card-body">            
+            <form action="{{ save }}" method="post" enctype="multipart/form-data" id="form_module" data-oc-toggle="ajax">
+               <div class="row mb-3 form-group required">
+                  <label class="col-sm-2 col-form-label" for="input-name">{{ entry_name }}</label>
+                  <div class="col-sm-10">
+                     <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+                     {% if error_name %}
+                     <div class="text-danger">{{ error_name }}</div>
+                     {% endif %}
+                  </div>
+               </div>
+               <div class="row mb-3 form-group">
+                  <label for="input-popup" class="col-sm-2 col-form-label">{{ entry_popup }}</label>
+                  <div class="col-sm-10">
+                  <div class="form-check form-switch form-switch-lg">
+                     <input type="hidden" name="popup" value="0"/>
+                     <input type="checkbox" name="popup" value="1" id="input-popup" class="form-check-input"{% if popup %} checked{% endif %}/>
+                  </div>
+                  </div> 
+               </div>
+               <div class="row mb-3 form-group">
+                  <label for="input-status" class="col-sm-2 col-form-label">{{ entry_status }}</label>
+                  <div class="col-sm-10">
+                  <div class="form-check form-switch form-switch-lg">
+                     <input type="hidden" name="status" value="0"/>
+                     <input type="checkbox" name="status" value="1" id="input-status" class="form-check-input"{% if status %} checked{% endif %}/>
+                  </div>
+                  </div>
+               </div>
+               <div class="row mb-3 required">
+                  <label class="col-sm-2 col-form-label">{{ entry_newsletter_image }}</label>
+                  <div class="col-sm-2">
+                     <div class="card image newsletter_image">
+                        <img src="{{ newsletter_image_thumb }}" alt="" title="" id="thumb-newsletter_image" data-oc-placeholder="{{ newsletter_image_placeholder }}" class="card-img-top"/> 
+                        <input type="hidden" name="newsletter_image" value="{{ newsletter_image }}" id="input-newsletter_image"/>
+                        <div class="card-body">
+                        <button type="button" data-oc-toggle="image" data-oc-target="#input-newsletter_image" data-oc-thumb="#thumb-newsletter_image" class="btn btn-primary btn-sm btn-block"><i class="fa-solid fa-pencil"></i> {{ button_edit }}</button>
+                        <button type="button" data-oc-toggle="clear" data-oc-target="#input-newsletter_image" data-oc-thumb="#thumb-newsletter_image" class="btn btn-warning btn-sm btn-block"><i class="fa-regular fa-trash-can"></i> {{ button_clear }}</button>
+                        </div>
+                     </div>
+                     <div id="error-newsletter-image" class="invalid-feedback"></div>
+                  </div>
+                  <div class="col-sm-8">
+                     <div>{{ text_newsletter_size_note }}</div>
+                  </div>
+               </div>
+               <div class="row mb-3 form-group">
+                  <div class="col-sm-2 col-form-label">
+                     <div class="tab-pane" id="tab-module">
+                        <ul class="nav nav-pills nav-stacked" id="module" style="display: block;">
+                           <li class="nav-link active">
+                              <a href="javascript:;" data-toggle="tab" style="color: #fff;">{{ text_list }}</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="col-sm-10">
+                     <div class="tab-content">
+                        <div class="tab-pane active" id ="tab-list">
+                           <div class="table-responsive">
+                              <table class="table table-bordered table-hover">
+                                 <thead>
+                                 <thead>
+                                    <tr>
+                                       <td class="text-center">{{ entry_number }}</td>
+                                       <td class="text-center">{{ entry_email }}</td>
+                                       <td class="text-center">{{ entry_action }}</td>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    {% if users %}
+                                    {% for key,user  in users %}
+                                    <tr>
+                                       <td class="text-center">{{ page_nav+ key  +1  }}</td>
+                                       <td class="text-center">{{ user['email']  }}</td>
+                                       <td class="text-center">
+                                          {% for action in user['action'] %}
+                                          <a href="{{ action['href']  }}">{{ action['text']  }}</a>
+                                          {% endfor %}
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% else %}
+                                    <tr>
+                                       <td class="text-center" colspan="5">{{ text_no_results  }}</td>
+                                    </tr>
+                                    {% endif %}
+                                 </tbody>
+                              </table>
+                              <div class="pagination">{{ pagination  }}</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </form>
+
+         </div>
+      </div>
+   </div>
+</div>
+{{ footer }}

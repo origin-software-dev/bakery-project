@@ -1,0 +1,185 @@
+/*----------------------------------------------*/
+/* Start Search */
+/*----------------------------------------------*/
+#themabilitySearch .input-lg,
+.header-search .input-lg {
+    padding: 5px 15px;
+    border: none;
+    box-shadow: none;
+    background: var(--secondary-color);
+    height: 40px;
+    border-radius: 0;
+    color: var(--primary-color);
+}
+#themabilitySearch .input-lg::placeholder,
+.header-search .input-lg::placeholder {
+    color: var(--primary-color);
+}
+#themabilitySearch .btn-lg,
+.header-search .btn-lg {
+    padding: 13px 20px;
+    margin: 0;
+    font-size: 14px;
+    box-shadow: none;
+    line-height: 20px;
+    border-radius: 0;
+    border: none;
+    color: var(--secondary-color);
+    background: var(--primary-hover-color);
+}
+#themabilitySearch .btn-lg:hover,
+.header-search .btn-lg:hover {
+    background: var(--primary-color);
+}
+.search-content {
+    position: relative;
+}
+.search-btn-outer.active i:before {
+    content: "\e903";
+}
+.search-btn-outer {
+    padding: 15px 0;
+}
+
+/* themability search edit */
+.header-search {
+    display: none;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    width: 250px;
+    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+}
+.header-search #themabilitySearch,
+.header-search>div {
+    display: flex;
+    border-radius: 0;
+    border: none;
+}
+#themabilitySearch .btn-lg i,
+.header-search .btn-lg i {
+    display: block;
+}
+#themabilitySearch .icon-close,
+.header-search .icon-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 7px;
+}
+.category-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.category-search:before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0px;
+    height: 40px;
+    width: 1px;
+    background: var(--primary-hover-color);
+    margin: 0 7px;
+}
+.category-search::after {
+    font-family: 'fontawesome';
+    content: '\f107';
+    font-size: 16px;
+    padding-right: 5px;
+    pointer-events: none;
+    color: var(--secondary-light-color);
+    position: absolute;
+    right: 10px;
+}
+.ui-autocomplete {
+    max-height: 350px;
+    overflow-x: overlay;
+    z-index: 11;
+    background: var(--secondary-color) !important;
+    -webkit-box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 18%);
+    padding: 0;
+    margin-top: 2px;
+}
+.ui-autocomplete.ui-menu .ui-menu-item {
+    list-style-image: none;
+    padding: 3px 0.5em;
+    border-top: 1px solid #ddd;
+}
+.ui-autocomplete .themability-search {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5px 0px;
+    font-size: 14px;
+}
+.ui-autocomplete .themability-search>div {
+    display: inline-block;
+    vertical-align: top;
+}
+.ui-autocomplete .themability-search .images {
+    width: 72px;
+    margin-right: 10px;
+}
+.ui-autocomplete .themability-search .images img {
+    /*width: 100%;*/
+}
+.ui-autocomplete .themability-search .product-detail .price-old {
+    color: var(--secondary-light-color);
+    text-decoration: line-through;
+}
+.ui-autocomplete .themability-search .product-detail .price-new{
+    margin-right: 10px;
+    display: inline-block;
+}
+
+/* themability search */
+#column-left #themabilitySearch,
+#column-right #themabilitySearch {
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    -webkit-box-shadow: 0 1px 3px rgb(0 0 0 / 10%);
+    padding: 20px;
+    display: block;
+    width: 100%;
+}
+#column-left .category-search:before,
+#column-right .category-search:before {
+    display: none;
+}
+#column-left .category-search::after,
+#column-right .category-search::after {
+    position: absolute;
+    right: 0;
+}
+#column-left #themabilitySearch .input-lg,
+#column-right #themabilitySearch .input-lg {
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+#column-left #themabilitySearch .input-lg.form-control,
+#column-right #themabilitySearch .input-lg.form-control {
+    float: unset;
+    margin: 5px 0 0;
+    background: var(--background-color);
+}
+@media (max-width: 991px) {
+    .category-search {
+        display: none;
+    }
+}
+@media (max-width: 480px) {
+    .ui-autocomplete .themability-search .images{
+        width: 60px;
+        min-width: 60px;
+    }
+    .header-search{
+        right: -30px;
+    }
+}

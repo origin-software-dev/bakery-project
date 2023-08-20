@@ -1,0 +1,68 @@
+<form method="post" data-oc-toggle="ajax" data-oc-load="{{ cart }}" data-oc-target="#header-cart">
+  <div class="product-thumb">
+    <div class="image">
+        <a href="{{ href }}">
+            <img src="{{ thumb }}" alt="{{ name }}" title="{{ name }}" class="img-fluid"/>
+        </a>
+        <div class="button-group">
+            <button class="addcart" type="submit" formaction="{{ add_to_cart }}" data-bs-toggle="tooltip" title="{{ button_cart }}"><i class="icon-shopping-bag"></i><span class="d-none">{{ button_cart }}</span></button>
+            <button class="wishlist" type="submit" formaction="{{ add_to_wishlist }}" data-bs-toggle="tooltip" title="{{ button_wishlist }}"><i class="fa-solid fa-heart"></i></button>
+            {# themability_quickview #}            
+            <button class="themability_quickview-button d-none" type="button" data-bs-toggle="tooltip" title="{{ button_themability_quickview }}" onclick="ThemabilityquickView.ajaxView('{{ href }}');"><i class="icon-eye"></i></button>
+            {# .themability_quickview #}
+            <button class="compare" type="submit" formaction="{{ add_to_compare }}" data-bs-toggle="tooltip" title="{{ button_compare }}"><i class="icon-shuffle-arrows"></i></button>
+        </div>
+    </div>
+
+    <div class="content product-description">
+        <div class="caption">            
+            <h4 class="product-title"><a href="{{ href }}">{{ name }}</a></h4>
+            <div class="price-rating">
+                {# price #}
+                {% if price %}
+                    <div class="price">
+                    {% if not special %}
+                        <span class="price-new">{{ price }}</span>
+                    {% else %}
+                        <span class="price-new">{{ special }}</span> <span class="price-old">{{ price }}</span>
+                    {% endif %}
+                    {% if tax %}
+                        <span class="price-tax">{{ text_tax }} {{ tax }}</span>
+                    {% endif %}
+                    </div>
+                {% endif %}
+                {# rating #}
+                {% if review_status and rating %}
+                  <div class="rating">
+                    {% for i in 1..5 %}
+                    {% if rating < i %}
+                        <span class="fa-stack"><i class="fa-regular fa-star fa-stack-1x"></i></span>
+                    {% else %}
+                        <span class="fa-stack"><i class="fa-solid fa-star fa-stack-1x"></i><i class="fa-regular fa-star fa-stack-1x"></i></span>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                {% else %}
+                    <div class="rating">
+                        {% for i in 1..5 %}
+                            <span class="fa fa-stack"><i class="fa-regular fa-star fa-stack-1x"></i></span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <p class="description">{{ description }}</p>
+            <div class="button-group pro_list_btn d-none">
+                <button class="addcart" type="submit" formaction="{{ add_to_cart }}" data-bs-toggle="tooltip" title="{{ button_cart }}"><i class="icon-shopping-bag"></i><span class="d-none">{{ button_cart }}</span></button>
+                <button class="wishlist" type="submit" formaction="{{ add_to_wishlist }}" data-bs-toggle="tooltip" title="{{ button_wishlist }}"><i class="fa-solid fa-heart"></i></button>
+                {# themability_quickview #}            
+                <button class="themability_quickview-button d-none" type="button" data-bs-toggle="tooltip" title="{{ button_themability_quickview }}" onclick="ThemabilityquickView.ajaxView('{{ href }}');"><i class="icon-eye"></i></button>
+                {# .themability_quickview #}
+                <button class="compare" type="submit" formaction="{{ add_to_compare }}" data-bs-toggle="tooltip" title="{{ button_compare }}"><i class="icon-shuffle-arrows"></i></button>
+            </div>
+        </div>
+    </div> 
+    <input type="hidden" name="product_id" value="{{ product_id }}"/>
+    <input type="hidden" name="quantity" value="{{ minimum }}"/>
+  </div>
+</form>

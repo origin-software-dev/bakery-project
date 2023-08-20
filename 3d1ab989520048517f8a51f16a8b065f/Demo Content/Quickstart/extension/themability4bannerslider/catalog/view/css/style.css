@@ -1,0 +1,9 @@
+/* banner_slider */
+.banner_slider .banner-slider-img.img-responsive {
+    width: auto;
+    margin: auto;
+}
+.banner_slider .owl-dots {
+    text-align: center;
+}
+/* banner_slider */

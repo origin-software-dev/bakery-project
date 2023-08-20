@@ -1,0 +1,121 @@
+/* Themability slider loading skin spin css */
+
+.themability_slider {
+    position: relative;
+    margin: 0 auto;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+    visibility: hidden;
+    touch-action: manipulation;
+}
+.themability_slider_section {
+    cursor: default;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.themability_slider_spin img {
+    animation-name: jssorl-009-spin;
+    animation-duration: 1.6s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@keyframes themability_slider_spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Themability slider bullet skin 053 css */
+.slider_navigator {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+}
+
+.slider_navigator .i {
+    position: absolute;
+    cursor: pointer;
+}
+
+.slider_navigator .i .b {
+    fill: var(--secondary-hover-color);
+    fill-opacity: 0.3;
+}
+
+.slider_navigator .i:hover .b {
+    fill-opacity: .7;
+}
+
+.slider_navigator .iav .b {
+    fill-opacity: 1;
+}
+
+.slider_navigator .i.idn {
+    opacity: .3;
+}
+
+/* Themability slider arrow skin 093 css */
+.slider_arrow {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+}
+
+.slider_arrow .c {
+    fill: #fb4734;
+    stroke: #fff;
+    stroke-width: 400;
+    stroke-miterlimit: 10;
+}
+
+.slider_arrow .a {
+    fill: #fb4734;
+    stroke: #fff;
+    stroke-width: 400;
+    stroke-miterlimit: 10;
+}
+
+.slider_arrow.jssora093dn {
+    opacity: .6;
+}
+
+.slider_arrow.jssora093ds {
+    opacity: .3;
+    pointer-events: none;
+}
+
+.themability_slider .slider_arrow_left {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 30px;
+}
+
+.themability_slider .slider_arrow_right {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    right: 30px;
+}
+.themability_slider .slider_arrow i{
+    font-size: 26px;
+    background: var(--primary-hover-color);
+    color: var(--secondary-color);
+    text-align: center;
+    height: 50px;
+    width: 50px;
+    line-height: 50px;
+    border-radius: 50%;
+}
+.themability_slider .slider_arrow i:hover {
+    background: var(--primary-color);
+    color: var(--secondary-color);
+}

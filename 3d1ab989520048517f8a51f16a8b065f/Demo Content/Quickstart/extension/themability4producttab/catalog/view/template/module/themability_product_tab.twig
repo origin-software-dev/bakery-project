@@ -1,0 +1,169 @@
+<div class="product-tab-block mt-45">
+	<div class="container">
+		<div class="main-tab">
+			<div class="product-tabs box-content clearfix">
+				<div class="page-title toggled">
+					<h3>{{ heading_title }}</h3>
+				</div>
+				<div id="tabs_{{module_id}}" class="themability-tabs section">
+					<ul class="nav nav-tabs">
+						{% if latest_products %}
+							{% if featured_products %}
+							<li>
+								<a href="#tab-featured_{{module_id}}" data-toggle="tab" class="selected"><span>{{ tab_featured }}</span></a>
+							</li>
+							{% endif %}
+							<li>
+								<a href="#tab-latest_{{module_id}}" data-toggle="tab"><span>{{ tab_latest }}</span></a>
+							</li>
+						{% endif %}
+						{% if special_products %}
+							<li>
+								<a href="#tab-special_{{module_id}}" data-toggle="tab"><span>{{ tab_special }}</span></a>
+							</li>
+						{% endif %}
+						{% if bestseller_products %}
+							<li>
+								<a href="#tab-bestseller_{{module_id}}" data-toggle="tab"><span>{{ tab_bestseller }}</span></a>
+							</li>
+						{% endif %}
+					</ul>
+				</div>
+				
+				{% set productForSlider = 1 %}
+				<div class="tab-content block_box">
+					<div class="row">
+						{% if featured_products %}
+							{% set count = 1 %}
+							{% set productCount_f = featured_products|length %}						
+							<div id="tab-featured_{{module_id}}" class="tab-pane">
+								<div id="featuredTabCarousel" class="box-product {% if productCount_f > productForSlider %} product-carousel{% else %} row {% endif %}" data-items={{items_in_row}} >
+									{% if productCount_f > productForSlider %}
+										{% set class = 'col-xs-12' %}
+									{% else %}
+										{% set class = 'col-lg-3 col-md-4 col-sm-4 col-xs-4' %}
+									{% endif %}
+									
+									{% for featured_product in featured_products %}							
+										{% if loop.index is odd or loop.index == 1 or productCount_f <= items_in_row  %}
+										<div class="col {{class}} single-column">
+										{% endif %}											
+											<div class="product-layout">{{ featured_product }}</div>
+										{%  if loop.index is even or loop.index == productCount_f or productCount_f <= items_in_row  %}
+										</div>
+										{% endif %}									
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+
+						{% if latest_products %}
+							{% set count = 1 %}
+							{% set productCount_l = latest_products|length %}
+							<div id="tab-latest_{{module_id}}" class="tab-pane">
+								<div id="latestTabCarousel" class="box-product {% if productCount_l > productForSlider %} product-carousel{% else %} row {% endif %}" data-items={{items_in_row}} >
+									{% if productCount_l > productForSlider %}
+										{% set class = 'col-xs-12' %}
+									{% else %}
+										{% set class = 'col-lg-3 col-md-4 col-sm-4 col-xs-4' %}
+									{% endif %}
+									{% for latest_product in latest_products %}
+										{% if loop.index is odd or loop.index == 1 or productCount_l <= items_in_row  %}
+										<div class="col {{class}} single-column">
+										{% endif %}											
+											<div class="product-layout">{{ latest_product }}</div>
+										{%  if loop.index is even or loop.index == productCount_l or productCount_l <= items_in_row  %}
+										</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+
+						{% if bestseller_products %}
+							{% set count = 1 %}
+							{% set productCount_b = bestseller_products|length %}
+							<div id="tab-bestseller_{{module_id}}" class="tab-pane">
+								<div id="bestsellerTabCarousel" class="box-product {% if productCount_b > productForSlider %} product-carousel{% else %} row {% endif %}" data-items={{items_in_row}} >
+									{% if productCount_b > productForSlider %}
+										{% set class = 'col-xs-12' %}
+									{% else %}
+										{% set class = 'col-lg-3 col-md-4 col-sm-4 col-xs-4' %}
+									{% endif %}
+									{% for bestseller_product in bestseller_products %}
+										{% if loop.index is odd or loop.index == 1 or productCount_b <= items_in_row  %}
+										<div class="col {{class}} single-column">
+										{% endif %}											
+											<div class="product-layout">{{ bestseller_product }}</div>
+										{%  if loop.index is even or loop.index == productCount_b or productCount_b <= items_in_row %}
+										</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+
+						{% if special_products %}
+							{% set count = 1 %}
+							{% set productCount_s = special_products|length %}
+							<div id="tab-special_{{module_id}}" class="tab-pane">
+								<div id="specialTabCarousel" class="box-product {% if productCount_s > productForSlider %} product-carousel{% else %} row {% endif %}" data-items={{items_in_row}} >
+									{% if productCount_s > productForSlider %}
+										{% set class = 'col-xs-12' %}
+									{% else %}
+										{% set class = 'col-lg-3 col-md-4 col-sm-4 col-xs-4' %}
+									{% endif %}
+									{% for special_product in special_products %}
+										{% if loop.index is odd or loop.index == 1 or productCount_s <= items_in_row %}
+										<div class="col {{class}} single-column">
+										{% endif %}											
+											<div class="product-layout">{{ special_product }}</div>
+										{%  if loop.index is even or loop.index == productCount_s or productCount_s <= items_in_row %}
+										</div>
+										{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$('#tabs_{{module_id}} a').tabs();
+
+	$(document).ready(function() {
+		// setTabCarousel_{{module_id}}();
+	});
+
+	// set sliders
+	// function setTabCarousel_{{module_id}}() {
+	// 	const direction = $('html').attr('dir');		
+	// 	$('.product-tab-carousel').each(function () {
+	// 		if ($(this).closest('#column-left').length == 0 && $(this).closest('#column-right').length == 0) {
+	// 			$(this).addClass('owl-carousel owl-theme');
+	// 			const items = $(this).data('items') || 5;
+	// 			// console.log( $(this).data('items'));
+	// 			const sliderOptions = {
+	// 				loop: false,
+	// 				nav: true,
+	// 				navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+	// 				dots: false,
+	// 				items: items,
+	// 				responsiveRefreshRate: 200,
+	// 				responsive: {
+	// 					0: { items: 1 },
+	// 					320: { items: ((items - 2) > 1) ? (items - 2) : 1 },
+	// 					541: { items: ((items - 1) > 1) ? (items - 1) : 1 },
+	// 					1200: { items: items }
+	// 				}
+	// 			};
+	// 			if (direction == 'rtl') sliderOptions['rtl'] = true;
+	// 			$(this).owlCarousel(sliderOptions);
+	// 		}
+	// 	});
+	// }
+</script>
